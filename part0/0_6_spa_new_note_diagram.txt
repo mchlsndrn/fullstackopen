@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+
+    Note right of browser: The browser sends a new note (content + timestamp) in JSON format via xhr POST
+
+    server-->>browser: Response = STATUS CODE 201 (CREATED)
+    deactivate server
+
+    Note right of browser: The browser updates the notes array (client-side) and renders the page.
+    Note right of browser: The browser does not know if any new data has been added by other users in the mean time.
